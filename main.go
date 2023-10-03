@@ -20,23 +20,27 @@ func main() {
   fmt.Println("[")
   fmt.Println("  []")
 
-  stats := make([]def.Status, 3)
+  stats := make([]def.Status, 4)
   datetimeStatChan := make(chan def.Status)
   externalIPStatChan := make(chan def.Status)
   internalIPStatChan := make(chan def.Status)
+  batteryStatChan := make(chan def.Status)
 
   go monitor.Datetime(datetimeStatChan)
   go monitor.ExternalIP(externalIPStatChan)
   go monitor.InternalIP(internalIPStatChan)
+  go monitor.Battery(batteryStatChan)
 
   go func() {
       for {
         select {
         case stat := <-datetimeStatChan:
-          stats[2] = stat
+          stats[3] = stat
         case stat := <-internalIPStatChan:
-          stats[1] = stat
+          stats[2] = stat
         case stat := <-externalIPStatChan:
+          stats[1] = stat
+        case stat := <-batteryStatChan:
           stats[0] = stat
         }
     }
@@ -44,6 +48,7 @@ func main() {
 
   for {
     stats[1].Invert()
+    stats[3].Invert()
     fmt.Println(",", toJsonString(stats))
     time.Sleep(500*time.Millisecond)
   }
