@@ -17,7 +17,6 @@ func Battery(channel chan def.Status) {
 		filename := "/sys/class/power_supply/BAT0/capacity"
 		bs, err := os.ReadFile(filename)
     var capacity int
-    var icon string
 		if err != nil {
       fmt.Fprintf(os.Stderr, err.Error())
       goto error
@@ -27,19 +26,7 @@ func Battery(channel chan def.Status) {
       fmt.Fprintln(os.Stderr, err.Error())
       goto error
     }
-    if capacity >= 90 {
-      icon = "\uf240"
-    } else if capacity >= 75 {
-      icon = "\uf241"
-    } else if capacity >= 50 {
-      icon = "\uf242"
-    } else if capacity >= 25 {
-      icon = "\uf243"
-    } else {
-      stat.Urgent = true
-      icon = "\uf244"
-    }
-    stat.FullText = fmt.Sprintf("%s %d%%", icon, capacity)
+    stat.FullText = fmt.Sprintf("\uf0e7%d%%", capacity)
     goto next
   error:
 			stat.Urgent = true
