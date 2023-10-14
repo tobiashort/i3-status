@@ -3,7 +3,7 @@ package monitor
 import (
 	"fmt"
 	"io"
-	"net"
+	"net/http"
 	"os"
 	"strings"
 	"time"
@@ -15,7 +15,8 @@ func ExternalIP(channel chan def.Status) {
   for {
     stat := def.DefaultStatus()
     stat.Name = "external_ip"
-    conn, err := net.Dial("tcp", "ipv4.cat:443")
+    client := http.Client{Timeout: 10*time.Second}
+    res, err := client.Get("https://ifconfig.me")
     var bs []byte
     if err != nil {
       fmt.Fprintln(os.Stderr, err.Error())
@@ -23,7 +24,7 @@ func ExternalIP(channel chan def.Status) {
       stat.FullText = stat.Name
       goto next
     } 
-    bs, err = io.ReadAll(conn)
+    bs, err = io.ReadAll(res.Body)
     if err != nil {
       fmt.Fprintln(os.Stderr, err.Error())
       stat.Urgent = true
