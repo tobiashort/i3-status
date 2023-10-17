@@ -28,8 +28,9 @@ func DefaultStatus() Status {
 	}
 }
 
-func (s *Status) Invert() {
+func (s Status) Invert() Status {
   s.Background = "#44475a"
   s.Border = "#44475a"
   s.Color = "#dcdfe4"
+  return s
 }
