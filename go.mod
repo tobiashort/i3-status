@@ -1,3 +1,3 @@
-module github.com/t-hg/i3-status
+module github.com/tobiashort/i3-status
 
 go 1.21.1

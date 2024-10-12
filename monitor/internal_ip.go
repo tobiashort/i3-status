@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/t-hg/i3-status/def"
+	"github.com/tobiashort/i3-status/def"
 )
 
 func InternalIP(channel chan def.Status) {

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/t-hg/i3-status/def"
+	"github.com/tobiashort/i3-status/def"
 )
 
 func ExternalIP(channel chan def.Status) {

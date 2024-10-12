@@ -3,7 +3,7 @@ package monitor
 import (
 	"time"
 
-	"github.com/t-hg/i3-status/def"
+	"github.com/tobiashort/i3-status/def"
 )
 
 func Datetime(channel chan def.Status) {

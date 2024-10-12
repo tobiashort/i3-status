@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/t-hg/i3-status/def"
+	"github.com/tobiashort/i3-status/def"
 )
 
 func Battery(channel chan def.Status) {

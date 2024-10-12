@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/t-hg/i3-status/def"
-	"github.com/t-hg/i3-status/monitor"
-	"github.com/t-hg/i3-status/must"
+	"github.com/tobiashort/i3-status/def"
+	"github.com/tobiashort/i3-status/monitor"
+	"github.com/tobiashort/i3-status/must"
 )
 
 func toJsonString(v interface{}) string {
